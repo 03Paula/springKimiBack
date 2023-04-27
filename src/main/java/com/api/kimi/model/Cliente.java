@@ -3,11 +3,11 @@ package com.api.kimi.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Generated;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @Entity
@@ -35,5 +35,14 @@ public class Cliente implements Serializable {
 
     private String contrasenia;
 
+    @ManyToMany
+    @JoinTable(name="cliente_direcciones", joinColumns = @JoinColumn(name = "id_cliente"),
+            inverseJoinColumns = @JoinColumn(name = "id_direccion", nullable = false))
+    private List<Direccion> direccion;
+
+    @ManyToMany
+    @JoinTable(name="cliente_tarjetas", joinColumns = @JoinColumn(name = "id_cliente"),
+            inverseJoinColumns = @JoinColumn(name = "id_tarjeta", nullable = false))
+    private List<Tarjeta> tarjeta;
 
 }

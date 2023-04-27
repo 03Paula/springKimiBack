@@ -5,6 +5,7 @@ import com.api.kimi.dto.cliente.CrearClienteDTO;
 import com.api.kimi.dto.converter.ClienteDTOConverter;
 import com.api.kimi.error.ClienteNotFoundException;
 import com.api.kimi.model.Cliente;
+import com.api.kimi.model.Direccion;
 import com.api.kimi.repository.ClienteRepository;
 import com.api.kimi.response.response;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +25,7 @@ public class ClienteServiceImp implements ClienteService{
     @Autowired
     private ClienteRepository clienteRepository;
     private final ClienteDTOConverter clienteDTOConverter;
+    private DireccionService direccionService;
 
     @Override
     @Transactional(readOnly = true)
@@ -43,6 +45,7 @@ public class ClienteServiceImp implements ClienteService{
     @Transactional
     public ResponseEntity<?> save(CrearClienteDTO crearCliente) {
         Cliente nCliente = new Cliente();
+        Direccion direccion = null;
         nCliente.setNombre(crearCliente.getNombre());
         nCliente.setApellidos(crearCliente.getEmail());
         nCliente.setEmail(crearCliente.getEmail());
@@ -61,7 +64,6 @@ public class ClienteServiceImp implements ClienteService{
             cliente.setContrasenia(modCliente.getContrasenia());
             return clienteRepository.save(cliente);
         }).orElseThrow(() -> new ClienteNotFoundException(id));
-
     }
 
     @Override
