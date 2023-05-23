@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "clientes")
-public class Cliente implements Serializable {
+public class Usuario implements Serializable {
 
     private static final long serialVersionUID = -5613302301208111473L;
     @Id
@@ -35,14 +35,7 @@ public class Cliente implements Serializable {
 
     private String contrasenia;
 
-    @ManyToMany
-    @JoinTable(name="cliente_direcciones", joinColumns = @JoinColumn(name = "id_cliente"),
-            inverseJoinColumns = @JoinColumn(name = "id_direccion", nullable = false))
-    private List<Direccion> direccion;
+    private String rol;
 
-    @ManyToMany
-    @JoinTable(name="cliente_tarjetas", joinColumns = @JoinColumn(name = "id_cliente"),
-            inverseJoinColumns = @JoinColumn(name = "id_tarjeta", nullable = false))
-    private List<Tarjeta> tarjeta;
 
 }

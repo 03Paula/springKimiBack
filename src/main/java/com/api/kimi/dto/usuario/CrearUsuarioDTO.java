@@ -1,19 +1,16 @@
-package com.api.kimi.dto.cliente;
+package com.api.kimi.dto.usuario;
 
-import com.api.kimi.model.Cliente;
-import com.api.kimi.model.Direccion;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
-
 @Getter
 @Setter
-public class CrearClienteDTO{
+public class CrearUsuarioDTO {
     private String nombre;
     private String apellidos;
     private String email;
     private String telefono;
     private String contrasenia;
-    private List<Direccion> direcciones;
+
+    private String rol;
 }

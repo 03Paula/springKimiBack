@@ -1,19 +1,18 @@
 package com.api.kimi.dto.converter;
 
-import com.api.kimi.dto.usuario.UsuarioDTO;
-import com.api.kimi.model.Usuario;
+import com.api.kimi.dto.pedido.PedidoDTO;
+import com.api.kimi.model.Pedido;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class ClienteDTOConverter {
-
+public class PedidoDTOConverter {
     private final ModelMapper modelMapper;
 
-    public UsuarioDTO convertToDTO(Usuario usuario){
+    public PedidoDTO convertToDTO(Pedido pedido){
 
-        return modelMapper.map(usuario, UsuarioDTO.class);
+        return modelMapper.map(pedido, PedidoDTO.class);
     }
 }

@@ -1,10 +1,14 @@
 package com.api.kimi.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -18,13 +22,19 @@ public class Tarjeta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @JsonManagedReference
+    @ManyToOne
+    @JoinColumn(name = "id_usuario")
+    private Usuario usuario;
     @Column(length = 100, nullable = false)
     private String titular;
 
     @Column(length = 30, nullable = false)
     private String n_tarjeta;
     @Column(nullable = false)
-    private Date vencimiento;
+    @JsonFormat(pattern="MM/yy", shape = JsonFormat.Shape.STRING)
+    private String vencimiento;
     @Column(length = 3, nullable = false)
     private Integer cvv;
 }

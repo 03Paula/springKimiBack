@@ -1,8 +1,6 @@
 package com.api.kimi.dto.converter;
 
-import com.api.kimi.dto.cliente.ClienteDTO;
 import com.api.kimi.dto.direccion.DireccionDTO;
-import com.api.kimi.model.Cliente;
 import com.api.kimi.model.Direccion;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;

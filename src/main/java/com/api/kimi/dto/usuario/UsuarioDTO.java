@@ -1,15 +1,11 @@
-package com.api.kimi.dto.cliente;
+package com.api.kimi.dto.usuario;
 
-import com.api.kimi.model.Cliente;
-import com.api.kimi.model.Direccion;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
-
 @Getter
 @Setter
-public class ClienteDTO{
+public class UsuarioDTO {
     private Long id;
     private String nombre;
     private String apellidos;
@@ -17,6 +13,6 @@ public class ClienteDTO{
     private String telefono;
     private String contrasenia;
 
-    private List<Direccion> direcciones;
+    private String rol;
 
 }

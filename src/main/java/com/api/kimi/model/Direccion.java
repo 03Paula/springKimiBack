@@ -1,5 +1,6 @@
 package com.api.kimi.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,6 +20,11 @@ public class Direccion implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonManagedReference
+    @ManyToOne
+    @JoinColumn(name = "id_usuario")
+    private Usuario usuario;
+
     @Column(length = 100, nullable = false)
     private String nombre_calle;
 
@@ -35,6 +41,5 @@ public class Direccion implements Serializable {
     private String ciudad;
     @Column(length = 30, nullable = false)
     private String provincia;
-
 
 }

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface TarjetaController {
     public ResponseEntity<?> create(@RequestBody CrearTarjetaDTO tarjeta);
@@ -19,4 +20,7 @@ public interface TarjetaController {
     public ResponseEntity<?> delete(@PathVariable(value = "id") Long tarjetaId);
 
     public List<TarjetaDTO> readAll();
+
+    public ResponseEntity<?> getCardByUser(@PathVariable Long id);
+
 }

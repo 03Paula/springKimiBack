@@ -8,6 +8,7 @@ import lombok.Setter;
 @Setter
 public class DireccionDTO {
     private Long id;
+    private Long usuarioId;
     private String nombre_calle;
     private String piso;
     private Integer codigo_postal;

@@ -19,4 +19,7 @@ public interface DireccionController {
     public ResponseEntity<?> delete(@PathVariable(value = "id") Long direccionId);
 
     public List<DireccionDTO> readAll();
+
+    public ResponseEntity<?> getDirectionByUser(@PathVariable Long id);
+
 }
