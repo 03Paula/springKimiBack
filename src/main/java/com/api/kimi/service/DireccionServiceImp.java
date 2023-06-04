@@ -3,6 +3,7 @@ package com.api.kimi.service;
 import com.api.kimi.dto.converter.DireccionDTOConverter;
 import com.api.kimi.dto.direccion.CrearDireccionDTO;
 import com.api.kimi.dto.direccion.DireccionDTO;
+import com.api.kimi.error.DireccionUsuarioNotFoundException;
 import com.api.kimi.error.UsuarioNotFoundException;
 import com.api.kimi.error.DireccionNotFoundException;
 import com.api.kimi.model.Usuario;
@@ -54,7 +55,13 @@ public class DireccionServiceImp implements DireccionService{
             nDireccion.setCodigo_postal(crearDireccion.getCodigo_postal());
             nDireccion.setNombre_calle(crearDireccion.getNombre_calle());
             nDireccion.setPais(crearDireccion.getPais());
-            nDireccion.setPiso(crearDireccion.getPiso());
+
+            if(!crearDireccion.getPiso().isEmpty()) {
+                nDireccion.setPiso(crearDireccion.getPiso());
+            }else{
+                nDireccion.setPiso(null);
+            }
+
             nDireccion.setProvincia(crearDireccion.getProvincia());
             return ResponseEntity.status(HttpStatus.CREATED).body(direccionRepository.save(nDireccion));
         }else{

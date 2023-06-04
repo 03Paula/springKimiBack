@@ -60,7 +60,6 @@ public class TarjetaServiceImp implements TarjetaService{
         } else{
             throw new UsuarioNotFoundException(crearTarjetaDTO.getUsuarioId());
         }
-
     }
 
     @Override

@@ -15,4 +15,6 @@ public interface PedidoController {
     public Pedido updatePedido(@RequestBody CrearPedidoDTO pedidoDetails, @PathVariable Long id);
     public ResponseEntity<?> delete(@PathVariable(value = "id") Long pedidoId);
     public List<PedidoDTO> readAll();
+    public ResponseEntity<?> getOrderByUser(@PathVariable Long id);
+
 }

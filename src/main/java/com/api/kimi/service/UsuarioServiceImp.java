@@ -25,6 +25,8 @@ import java.util.stream.Collectors;
 public class UsuarioServiceImp implements UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
+
+
     private final ClienteDTOConverter clienteDTOConverter;
 
     @Override

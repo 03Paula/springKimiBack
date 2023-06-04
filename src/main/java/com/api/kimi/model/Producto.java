@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.net.URL;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -56,4 +57,5 @@ public class Producto {
 
     @Column(nullable = true)
     private Integer paginas;
+
 }

@@ -19,8 +19,20 @@ public class Config {
             @Override
             public void addCorsMappings(CorsRegistry registry){
                 registry.addMapping("/**")
-                        .allowedMethods("HEAD", "GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS");
+                        .allowedMethods("HEAD", "GET", "POST", "PUT", "DELETE","OPTIONS");
             }
         };
     }
+
+    //return new WebMvcConfigurer() {
+    //            @Override
+    //            public void addCorsMappings(CorsRegistry registry) {
+    //                registry.addMapping("/**")
+    //                        .allowedOriginPatterns("*")
+    //                        .allowedMethods("GET", "POST", "PUT", "DELETE")
+    //                        .allowedHeaders("*")
+    //                        .exposedHeaders("Authorization")
+    //                        .allowCredentials(true);
+    //            }
+    //        };
 }

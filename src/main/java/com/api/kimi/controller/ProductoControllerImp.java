@@ -2,6 +2,7 @@ package com.api.kimi.controller;
 
 import com.api.kimi.dto.producto.CrearProductoDTO;
 import com.api.kimi.dto.producto.ProductoDTO;
+import com.api.kimi.error.ProductoNotFoundException;
 import com.api.kimi.error.UsuarioNotFoundException;
 import com.api.kimi.model.Producto;
 import com.api.kimi.service.ProductoService;
@@ -46,10 +47,10 @@ public class ProductoControllerImp implements ProductoController {
     public ResponseEntity<?> read(@PathVariable(value = "id") Long productoId){
         log.info("Obtencion de un producto por su id.");
 
-        Optional<Producto> oProducto = productoService.findById(productoId);
+        Optional<ProductoDTO> oProducto = productoService.findById(productoId);
 
         if(!oProducto.isPresent()){
-            throw new UsuarioNotFoundException(productoId);
+            throw new ProductoNotFoundException(productoId);
         }
 
         return ResponseEntity.ok(oProducto);
@@ -73,7 +74,7 @@ public class ProductoControllerImp implements ProductoController {
         log.info("Eliminanción de un producto por su id.");
 
         if (!productoService.findById(productoId).isPresent()){
-            throw new UsuarioNotFoundException(productoId);
+            throw new ProductoNotFoundException(productoId);
         }
 
         productoService.deleteById(productoId);

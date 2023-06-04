@@ -3,6 +3,7 @@ package com.api.kimi.service;
 import com.api.kimi.dto.converter.PedidoDTOConverter;
 import com.api.kimi.dto.pedido.CrearPedidoDTO;
 import com.api.kimi.dto.pedido.PedidoDTO;
+import com.api.kimi.dto.tarjeta.TarjetaDTO;
 import com.api.kimi.error.UsuarioNotFoundException;
 import com.api.kimi.error.PedidoNotFoundException;
 import com.api.kimi.error.ProductoNotFoundException;
@@ -50,26 +51,35 @@ public class PedidoServiceImp implements PedidoService{
     @Transactional
     public ResponseEntity<?> save(CrearPedidoDTO crearPedido) {
         Usuario usuario;
-        usuario = usuarioRepository.findById(crearPedido.getId_cliente()).orElseThrow(() -> new UsuarioNotFoundException(crearPedido.getId_cliente()));
-        List<Long> productosId = new ArrayList<Long>();
-        for(Long id : crearPedido.getId_productos()){
+        usuario = usuarioRepository.findById(crearPedido.getUsuarioId()).orElseThrow(() -> new UsuarioNotFoundException(crearPedido.getUsuarioId()));
+        List<Producto> productosId = new ArrayList<>();
+        Double precioTotal = 0D;
+        for(Long id : crearPedido.getProductos()){
+            Optional<Producto> producto;
             if(productoRepository.findById(id).isPresent()){
-                productosId.add(id);
-            }else{
-                new ProductoNotFoundException(id);
+                producto = productoRepository.findById(id);
+                productosId.add(producto.get());
+                precioTotal += producto.get().getPrecio();
             }
         }
-        Pedido nPedido = new Pedido();
-        nPedido.setUsuario(usuario);
+        if (!productosId.isEmpty()){
+            Pedido nPedido = new Pedido();
+            nPedido.setUsuario(usuario);
 
-        nPedido.setEstado_pedido(crearPedido.getEstado_pedido());
-        nPedido.setFecha_pedido(crearPedido.getFecha_pedido());
-        return ResponseEntity.status(HttpStatus.CREATED).body(pedidoRepository.save(nPedido));
+            nPedido.setEstado_pedido(crearPedido.getEstado_pedido());
+            nPedido.setFecha_pedido(crearPedido.getFecha_pedido());
+            nPedido.setProductos(productosId);
+            nPedido.setPrecioTotal(precioTotal);
+            return ResponseEntity.status(HttpStatus.CREATED).body(pedidoRepository.save(nPedido));
+        }else{
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+
     }
 
     @Override
     public Pedido update(CrearPedidoDTO modPedido ,Long id) {
-        Usuario usuario = usuarioRepository.findById(modPedido.getId_cliente()).orElseThrow(() -> new UsuarioNotFoundException(modPedido.getId_cliente()));
+        Usuario usuario = usuarioRepository.findById(modPedido.getUsuarioId()).orElseThrow(() -> new UsuarioNotFoundException(modPedido.getUsuarioId()));
         List<Producto> productos = new ArrayList<>();
         for(Producto producto : productos ){
             if(productoRepository.findById(producto.getId()) != null){
@@ -92,5 +102,10 @@ public class PedidoServiceImp implements PedidoService{
     @Transactional
     public void deleteById(Long id) {
         pedidoRepository.deleteById(id);
+    }
+
+    @Override
+    public List<PedidoDTO> findByUsuarioId(Long usuario_id) {
+        return pedidoRepository.findByUsuarioId(usuario_id).stream().map(pedidoDTOConverter::convertToDTO).collect(Collectors.toList());
     }
 }

@@ -1,21 +1,17 @@
-package com.api.kimi.dto.pedido;
+package com.api.kimi.dto.carrito;
 
 import com.api.kimi.model.Producto;
-import com.api.kimi.model.Usuario;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
 import java.util.List;
 
 @Getter
 @Setter
-public class PedidoDTO {
+public class CarritoDTO {
     private Long id;
     private Long usuarioId;
     private List<Producto> productos;
-    private Date fecha_pedido;
+    private Integer cantidad;
     private Double precioTotal;
-    private String estado_pedido;
-
 }

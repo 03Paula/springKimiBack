@@ -2,7 +2,9 @@ package com.api.kimi.controller;
 
 import com.api.kimi.dto.pedido.CrearPedidoDTO;
 import com.api.kimi.dto.pedido.PedidoDTO;
+import com.api.kimi.dto.tarjeta.TarjetaDTO;
 import com.api.kimi.error.PedidoNotFoundException;
+import com.api.kimi.error.UsuarioNotFoundException;
 import com.api.kimi.model.Pedido;
 import com.api.kimi.service.PedidoService;
 import io.swagger.annotations.Api;
@@ -84,4 +86,17 @@ public class PedidoControllerImp implements PedidoController{
         return (List<PedidoDTO>) pedidoService.findAll();
     }
 
+    // Read all orders by user.
+    @GetMapping("/kimi/pedidos/usuario/{id}")
+    @ApiOperation(value = "Get all orders by user id", notes = "Get all orders by user id", httpMethod = "GET")
+    @Override
+    public ResponseEntity<?> getOrderByUser(@PathVariable Long id) {
+        log.info("Obtencion de pedidos por su usuario.");
+        List<PedidoDTO> oPedido = pedidoService.findByUsuarioId(id);
+        if (oPedido.isEmpty()){
+            throw new UsuarioNotFoundException(id);
+        }
+
+        return ResponseEntity.ok(oPedido);
+    }
 }

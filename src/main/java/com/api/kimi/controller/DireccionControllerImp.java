@@ -4,6 +4,7 @@ import com.api.kimi.dto.direccion.CrearDireccionDTO;
 import com.api.kimi.dto.direccion.DireccionDTO;
 import com.api.kimi.dto.tarjeta.TarjetaDTO;
 import com.api.kimi.error.DireccionNotFoundException;
+import com.api.kimi.error.DireccionUsuarioNotFoundException;
 import com.api.kimi.error.UsuarioNotFoundException;
 import com.api.kimi.model.Direccion;
 import com.api.kimi.service.DireccionService;
@@ -95,7 +96,7 @@ public class DireccionControllerImp implements DireccionController{
         log.info("Obtencion de direcciones por un usuario.");
         List<DireccionDTO> oDireccion = direccionService.findByUsuarioId(id);
         if (oDireccion.isEmpty()){
-            throw new UsuarioNotFoundException(id);
+            throw new DireccionUsuarioNotFoundException(id);
         }
         return ResponseEntity.ok(oDireccion);
     }

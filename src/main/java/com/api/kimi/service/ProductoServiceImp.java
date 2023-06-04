@@ -44,8 +44,8 @@ public class ProductoServiceImp implements ProductoService{
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<Producto> findById(Long id) {
-        return  productoRepository.findById(id);
+    public Optional<ProductoDTO> findById(Long id) {
+        return  productoRepository.findById(id).map(productoDTOConverter::convertToDTO);
     }
 
     @Override

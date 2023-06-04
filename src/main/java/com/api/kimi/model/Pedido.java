@@ -9,6 +9,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Data
 @Entity
@@ -21,25 +22,19 @@ public class Pedido implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_cliente", referencedColumnName = "id")
     private Usuario usuario;
 
-    @ManyToMany
-    @JoinColumn(name = "id_productos", referencedColumnName = "id")
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "pedidos_productos", joinColumns = @JoinColumn(name = "pedido_id"),
+    inverseJoinColumns = @JoinColumn(name = "producto_id"))
     private List<Producto> productos;
 
     @JsonFormat(pattern = "dd/MM/yyyy")
     private Date fecha_pedido;
 
-    public Double precioTotal() {
-        double sum = 0D;
-        List<Producto> productos = getProductos();
-        for (Producto p : productos) {
-            sum += p.getPrecio();
-        }
-        return sum;
-    }
+    public Double precioTotal;
 
     @Column(length = 30)
     private String estado_pedido;

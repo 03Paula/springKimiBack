@@ -13,7 +13,7 @@ import java.util.Optional;
 public interface ProductoService {
     public Iterable<ProductoDTO> findAll();
 
-    public Optional<Producto> findById(Long id);
+    public Optional<ProductoDTO> findById(Long id);
 
     public ResponseEntity<?> save(CrearProductoDTO crearProducto);
 
