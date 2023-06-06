@@ -22,4 +22,5 @@ public interface ProductoService {
     public void deleteById(Long id);
 
     public Page<ProductoDTO> findAllPaginated(Pageable pageable);
+
 }

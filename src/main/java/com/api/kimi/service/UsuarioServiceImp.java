@@ -12,6 +12,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,7 +27,7 @@ import java.util.stream.Collectors;
 public class UsuarioServiceImp implements UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
-
+    private final PasswordEncoder encoder;
 
     private final ClienteDTOConverter clienteDTOConverter;
 
@@ -52,7 +54,7 @@ public class UsuarioServiceImp implements UsuarioService {
             nUsuario.setApellidos(crearCliente.getApellidos());
             nUsuario.setEmail(crearCliente.getEmail());
             nUsuario.setTelefono(crearCliente.getTelefono());
-            nUsuario.setContrasenia(crearCliente.getContrasenia());
+            nUsuario.setContrasenia((encoder.encode(crearCliente.getContrasenia())));
             nUsuario.setRol(UsuarioRol.USUARIO.toString());
             return ResponseEntity.status(HttpStatus.CREATED).body(usuarioRepository.save(nUsuario));
         }else{
@@ -68,7 +70,7 @@ public class UsuarioServiceImp implements UsuarioService {
             cliente.setApellidos(modCliente.getApellidos());
             cliente.setEmail(usuarioEmail.getEmail());
             cliente.setTelefono(modCliente.getTelefono());
-            cliente.setContrasenia(modCliente.getContrasenia());
+            cliente.setContrasenia(encoder.encode(modCliente.getContrasenia()));
             return usuarioRepository.save(cliente);
         }).orElseThrow(() -> new UsuarioNotFoundException(id));
     }

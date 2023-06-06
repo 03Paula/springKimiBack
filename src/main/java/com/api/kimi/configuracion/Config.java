@@ -17,22 +17,14 @@ public class Config {
     public WebMvcConfigurer corsConfigurer(){
         return new WebMvcConfigurer() {
             @Override
-            public void addCorsMappings(CorsRegistry registry){
+            public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedMethods("HEAD", "GET", "POST", "PUT", "DELETE","OPTIONS");
+                        .allowedOriginPatterns("*")
+                        .allowedMethods("GET", "POST", "PUT", "DELETE")
+                        .allowedHeaders("*")
+                        .exposedHeaders("Authorization")
+                        .allowCredentials(true);
             }
         };
     }
-
-    //return new WebMvcConfigurer() {
-    //            @Override
-    //            public void addCorsMappings(CorsRegistry registry) {
-    //                registry.addMapping("/**")
-    //                        .allowedOriginPatterns("*")
-    //                        .allowedMethods("GET", "POST", "PUT", "DELETE")
-    //                        .allowedHeaders("*")
-    //                        .exposedHeaders("Authorization")
-    //                        .allowCredentials(true);
-    //            }
-    //        };
 }

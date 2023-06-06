@@ -36,7 +36,7 @@ public class Producto {
     @Column(nullable = false)
     private String imagen;
 
-    @Column( length = 500 ,nullable = false)
+    @Column( length = 1000 ,nullable = false)
     private String descripcion;
 
     @Column( length = 50 ,nullable = false)
