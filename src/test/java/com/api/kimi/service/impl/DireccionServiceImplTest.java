@@ -5,8 +5,6 @@ import com.api.kimi.dto.direccion.DireccionDTO;
 import com.api.kimi.model.Direccion;
 import com.api.kimi.model.Usuario;
 import com.api.kimi.repository.DireccionRepository;
-import com.api.kimi.service.DireccionService;
-import com.api.kimi.service.DireccionServiceImp;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,8 +20,6 @@ import java.util.List;
 
 import static org.mockito.Mockito.when;
 
-@ExtendWith(MockitoExtension.class)
-@RunWith(JUnitPlatform.class)
 public class DireccionServiceImplTest {
 
     @InjectMocks

@@ -23,4 +23,13 @@ public interface ProductoController {
     public List<ProductoDTO> readAll();
 
     public ResponseEntity<Page<ProductoDTO>> readAllPageable(Pageable pageable);
+
+    public ResponseEntity<?> getProductByName(@PathVariable(value = "nombre") String nombre);
+
+    public ResponseEntity<?> getProductByCategory(@PathVariable(value = "categoria") String categoria);
+
+    public ResponseEntity<?> getProductByAutor(@PathVariable(value = "autor") String autor);
+
+    public ResponseEntity<?> getProductByGenero(@PathVariable(value = "genero") String genero);
+
 }

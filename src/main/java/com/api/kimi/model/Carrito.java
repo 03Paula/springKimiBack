@@ -25,11 +25,9 @@ public class Carrito implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "producto_id"))
     private List<Producto> productos;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_cliente", referencedColumnName = "id")
     private Usuario usuario;
-
     private Integer cantidad = 1;
-
     private Double precioTotal;
 }
