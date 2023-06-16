@@ -38,7 +38,7 @@ public class CarritoControllerImp implements CarritoController {
 
 
     // Read an cart
-    @GetMapping("/kimi/carrito/{id}")
+    @GetMapping("/kimi/carrito/:{id}")
     @ApiOperation(value = "Get an cart by its id", notes = "Get an cart by its id", httpMethod = "GET")
     @Override
     public ResponseEntity<?> read(@PathVariable(value = "id") Long carritoId){
@@ -56,7 +56,7 @@ public class CarritoControllerImp implements CarritoController {
 
     // Update a cart
     @Override
-    @PutMapping("/kimi/carrito/{id}")
+    @PutMapping("/kimi/carrito/:{id}")
     @ApiOperation(value = "Update a cart by its id", notes = "Update a cart by its id", httpMethod = "PUT")
     public Carrito updateCarrito(@RequestBody CrearCarritoDTO carritoDetails, @PathVariable Long id) {
         log.info("Actualización de un carrito por su id.");
