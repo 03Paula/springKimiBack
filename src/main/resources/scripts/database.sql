@@ -120,13 +120,13 @@ create table if not exists `kimi-shop`.tarjetas
 insert into `kimi-shop`.clientes (id, apellidos, contrasenia, email, nombre, rol, telefono)
 values (1,'Armario Cuadro', '$2a$10$aaN1q6uIAQaJltjisEiI6eMlyI/Lx6uPgmIPBqiEexo1GTLPne/ga', 'admin@gmail.com', 'Admin', 'ADMIN', '765543211'),
        (2,'Flor García', 'Pestillo123', '03paulaflor@gmail.com', 'Paula', 'ADMIN', '765543211'),
-       (3, 'Jimenez Perez', '$2a$10$aaN1q6uIAQaJltjisEiI6eMlyI/Lx6uPgmIPBqiEexo1GTLPne/ga', 'paco@gmail.com', 'Paco', 'USUARIO', '985121233'),
-       (4, 'Lorca Benitez', '$2a$10$aaN1q6uIAQaJltjisEiI6eMlyI/Lx6uPgmIPBqiEexo1GTLPne/ga', 'lorquita@gmail.com', 'Juan Manuel', 'USUARIO', '665234123'),
-       (5, 'Rodriguez Rodriguez', '$2a$10$aaN1q6uIAQaJltjisEiI6eMlyI/Lx6uPgmIPBqiEexo1GTLPne/ga', 'lulurodri@gmail.com', 'Lucía', 'USUARIO', '777666444'),
-       (6, 'García Román', '$2a$10$aaN1q6uIAQaJltjisEiI6eMlyI/Lx6uPgmIPBqiEexo1GTLPne/ga', 'amai@gamil.com', 'Amaya', 'USUARIO', '234112233'),
-       (7,'Carmona Marquez' , '$2a$10$aaN1q6uIAQaJltjisEiI6eMlyI/Lx6uPgmIPBqiEexo1GTLPne/ga', 'carmar11@gmail.com', 'Juan', 'USUARIO', '656432111'),
-       (8, 'Gomez Lugos', '$2a$10$aaN1q6uIAQaJltjisEiI6eMlyI/Lx6uPgmIPBqiEexo1GTLPne/ga', 'clugo11@gmail.com', 'Carlos', 'USUARIO', '234432112'),
-       (9,'García García', '$2a$10$aaN1q6uIAQaJltjisEiI6eMlyI/Lx6uPgmIPBqiEexo1GTLPne/ga', 'Luisgg@gmail.com', 'Luis', 'USUARIO', '634112399');
+       (3, 'Jimenez Perez', 'Pestillo123', 'paco@gmail.com', 'Paco', 'USUARIO', '985121233'),
+       (4, 'Lorca Benitez', 'Pestillo123', 'lorquita@gmail.com', 'Juan Manuel', 'USUARIO', '665234123'),
+       (5, 'Rodriguez Rodriguez', 'Pestillo123', 'lulurodri@gmail.com', 'Lucía', 'USUARIO', '777666444'),
+       (6, 'García Román', 'Pestillo123', 'amai@gamil.com', 'Amaya', 'USUARIO', '234112233'),
+       (7,'Carmona Marquez' , 'Pestillo123', 'carmar11@gmail.com', 'Juan', 'USUARIO', '656432111'),
+       (8, 'Gomez Lugos', 'Pestillo123', 'clugo11@gmail.com', 'Carlos', 'USUARIO', '234432112'),
+       (9,'García García', 'Pestillo123', 'Luisgg@gmail.com', 'Luis', 'USUARIO', '634112399');
 
 insert into `kimi-shop`.direcciones (id, ciudad, codigo_postal, nombre_calle, pais, piso, provincia, id_usuario)
 values (1,'Madrid', 28001, 'Calle de Alcalá', 'España', '4º', 'Madrid', 3),
