@@ -15,7 +15,6 @@ public class CrearTarjetaDTO {
     private String titular;
     private Long usuarioId;
     private String n_tarjeta;
-
     @JsonFormat(pattern="MM/yy", shape = JsonFormat.Shape.STRING)
     private String vencimiento;
     private Integer cvv;
